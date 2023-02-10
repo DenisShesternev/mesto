@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./pages/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+    <meta name="author" content="Denis Shesternev">
+</head>
+<body class="page">
+    <header class="header">
+        <img src="./images/Vector.svg" alt="Место" class="header__logo">
+    </header>
+    <main class="main">
+        <section class="profile">
+            <img src="./images/image.jpg" alt="Аватар" class="profile__avatar">
+            <div class="profile__info">
+                <h1 class="profile__name">Денис Шестернев</h1>
+                <button class="profile__edit-button"></button>
+                <p class="profile__add">Исследователь, но не океана.</p>
+            </div>
+            <button class="profile__add-button"></button>          
+        </section>
+        <section class="elements">
+            <figure class="element">
+                <img src="./images/IMG_20210809_180539.jpg" alt="" class="element__img">
+                <div class="element__container">
+                    <p class="element__mesto">Алтай</p>
+                    <button class="element__button-like"></button>
+                </div>                
+            </figure>
+            <figure class="element">
+                <img src="./images/20220618_133254.jpg" alt="" class="element__img">
+                <div class="element__container">
+                    <p class="element__mesto">Пик Тальцинский</p>
+                    <button class="element__button-like"></button>
+                </div>                
+            </figure>
+            <figure class="element">
+                <img src="./images/SNyPro5nQmk.jpg" alt="" class="element__img">
+                <div class="element__container">
+                    <p class="element__mesto">Байкал</p>
+                    <button class="element__button-like"></button>
+                </div>                
+            </figure>
+            <figure class="element">
+                <img src="./images/9BplCKv41Gk.jpg" alt="" class="element__img">
+                <div class="element__container">
+                    <p class="element__mesto">Пик Хулугайша</p>
+                    <button class="element__button-like"></button>
+                </div>                
+            </figure>
+            <figure class="element">
+                <img src="./images/20220822_123719_1.jpg" alt="" class="element__img">
+                <div class="element__container">
+                    <p class="element__mesto">Гранатовый маршрут</p>
+                    <button class="element__button-like"></button>
+                </div>                
+            </figure>
+            <figure class="element">
+                <img src="./images/aWg67vDFO5k.jpg" alt="" class="element__img">
+                <div class="element__container">
+                    <p class="element__mesto">Мамай</p>
+                    <button class="element__button-like"></button>
+                </div>                
+            </figure>            
+        </section>       
+    </main>
+    <footer class="footer">
+        <p class="footer__author">&copy;2023. Denis Shesternev</p>          
+    </footer>
+    <section class="popup">
+        <div class="popup__container">
+            <button class="popup__close-button" aria-label="Закрыть"></button>
+            <form class="popup__form">
+                <h3 class="popup__title">Редактировать профиль</h3>
+                <fieldset class="popup__fieldset">
+                    <input class="popup__input popup__input-name" type="text" placeholder="Ваше имя">
+                    <input class="popup__input popup__input-add" type="text" placeholder="Ваш род занятий">
+                </fieldset>
+                <button class="popup__save-button">Сохранить</button>
+            </form>  
+        </div>      
+    </section>
+    <script src="./scripts/popup.js"></script>
+</body>
+</html>
