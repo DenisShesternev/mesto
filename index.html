@@ -16,72 +16,72 @@
             <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
             <div class="profile__info">
                 <h1 class="profile__name">Денис Шестернев</h1>
-                <button class="profile__edit-button"></button>
+                <button type="button" class="profile__edit-button"></button>
                 <p class="profile__add">Исследователь, но не океана.</p>
             </div>
-            <button class="profile__add-button"></button>          
+            <button type="button" class="profile__add-button"></button>          
         </section>
-        <section class="elements">
-            <figure class="element">
-                <img src="./images/1.jpg" alt="" class="element__img">
+        <ul class="elements">
+            <li class="element">
+                <img src="./images/1.jpg" alt="Алтай" class="element__img">
                 <div class="element__container">
-                    <p class="element__mesto">Алтай</p>
-                    <button class="element__button-like"></button>
+                    <h2 class="element__mesto">Алтай</h2>
+                    <button type="button" class="element__button-like"></button>
                 </div>                
-            </figure>
-            <figure class="element">
-                <img src="./images/2.jpg" alt="" class="element__img">
+            </li>
+            <li class="element">
+                <img src="./images/2.jpg" alt="Пик Тальцинский" class="element__img">
                 <div class="element__container">
-                    <p class="element__mesto">Пик Тальцинский</p>
-                    <button class="element__button-like"></button>
+                    <h2 class="element__mesto">Пик Тальцинский</h2>
+                    <button type="button" class="element__button-like"></button>
                 </div>                
-            </figure>
-            <figure class="element">
-                <img src="./images/3.jpg" alt="" class="element__img">
+            </li>
+            <li class="element">
+                <img src="./images/3.jpg" alt="Байкал" class="element__img">
                 <div class="element__container">
-                    <p class="element__mesto">Байкал</p>
-                    <button class="element__button-like"></button>
+                    <h2 class="element__mesto">Байкал</h2>
+                    <button type="button" class="element__button-like"></button>
                 </div>                
-            </figure>
-            <figure class="element">
-                <img src="./images/4.jpg" alt="" class="element__img">
+            </li>
+            <li class="element">
+                <img src="./images/4.jpg" alt="Пик Хулугайша" class="element__img">
                 <div class="element__container">
-                    <p class="element__mesto">Пик Хулугайша</p>
-                    <button class="element__button-like"></button>
+                    <h2 class="element__mesto">Пик Хулугайша</h2>
+                    <button type="button" class="element__button-like"></button>
                 </div>                
-            </figure>
-            <figure class="element">
-                <img src="./images/5.jpg" alt="" class="element__img">
+            </li>
+            <li class="element">
+                <img src="./images/5.jpg" alt="Гранатовый маршрут" class="element__img">
                 <div class="element__container">
-                    <p class="element__mesto">Гранатовый маршрут</p>
-                    <button class="element__button-like"></button>
+                    <h2 class="element__mesto">Гранатовый маршрут</h2>
+                    <button type="button" class="element__button-like"></button>
                 </div>                
-            </figure>
-            <figure class="element">
-                <img src="./images/6.jpg" alt="" class="element__img">
+            </li>
+            <li class="element">
+                <img src="./images/6.jpg" alt="Мамай" class="element__img">
                 <div class="element__container">
-                    <p class="element__mesto">Мамай</p>
-                    <button class="element__button-like"></button>
+                    <h2 class="element__mesto">Мамай</h2>
+                    <button type="button" class="element__button-like"></button>
                 </div>                
-            </figure>            
-        </section>       
+            </li>            
+        </ul>       
     </main>
     <footer class="footer">
         <p class="footer__author">&copy;2023. Denis Shesternev</p>          
     </footer>
     <section class="popup">
         <div class="popup__container">
-            <button class="popup__close-button" aria-label="Закрыть"></button>
-            <form class="popup__form">
+            <button  type="reset" class="popup__close-button" aria-label="Закрыть"></button>
+            <form class="popup__form" name="editProfileForm">
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <fieldset class="popup__fieldset">
-                    <input class="popup__input popup__input-name" type="text" placeholder="Ваше имя">
-                    <input class="popup__input popup__input-add" type="text" placeholder="Ваш род занятий">
+                    <input class="popup__input popup__input_name" type="text" placeholder="Ваше имя">
+                    <input class="popup__input popup__input_add" type="text" placeholder="Ваш род занятий">
                 </fieldset>
-                <button class="popup__save-button">Сохранить</button>
+                <button type="submit" class="popup__save-button">Сохранить</button>
             </form>  
         </div>      
     </section>
-    <script src="./scripts/popup.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 </html>
