@@ -1,0 +1,8 @@
+.popup__container_image {
+    position: relative;
+    box-shadow: none;
+    border-radius: 10px;
+    opacity: 1;
+    align-self: center;
+    margin: 0 auto;
+}
