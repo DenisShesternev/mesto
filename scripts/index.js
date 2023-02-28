@@ -29,10 +29,10 @@ const elementsContainer = document.querySelector('.elements');
 // общие функции popup
 function openPopup(popupClass) { // функция открытия
   popupClass.classList.add('popup__opened');
-  document.addEventListener('keydown', popupCloseEscape);
 }
 function closePopup(popupClass) { // функция закрытия
   popupClass.classList.remove('popup__opened');
+  formCard.reset(); // скорее неверное расположение вызова сброса формы, т.к сброс происходит только при нажатии на 'отправить'.
 }
 
 function popupCloseEscape(evt) { // выход из popup с помощью Escape
@@ -98,13 +98,13 @@ function renderCard (evt) { // создание карточки при ввод
 }
 
 initialCards.forEach(cardData => { //отображение карточек из 'коробки'
-	const name = cardData.name;
-	const link = cardData.link;
 	elementsContainer.append(createCard(cardData));
 });
 
 // Слушатели
-document.addEventListener('click', popupCloseOverlay); // слушатель клика на overlay
+
+document.addEventListener('keydown', popupCloseEscape);
+document.addEventListener('mousedown', popupCloseOverlay); 
 
 profileEdit.addEventListener('click', function() { // слушатели окна редактирования профиля
   openPopup(profilePopup);
@@ -117,10 +117,10 @@ profileClosePopup.addEventListener('click', function() {
 formProfile.addEventListener('submit', handleFormSubmitProfile);
 
 cardAdd.addEventListener('click', function() { // слушатели окна добавления карточки
-  openPopup(cardPopup)
+  openPopup(cardPopup);
 });
 cardClosePopup.addEventListener('click', function() {
-  closePopup(cardPopup)
+  closePopup(cardPopup);
 });
 formCard.addEventListener('submit', renderCard);
 
