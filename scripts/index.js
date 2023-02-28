@@ -14,6 +14,7 @@ const cardAdd = document.querySelector('.profile__add-button');
 const formCard = document.querySelector('.popup__form_card');
 const cardInputName = document.querySelector('.popup__input_card_name');
 const cardInputLink = document.querySelector('.popup__input_card_link');
+const buttonElement = formCard.querySelector('.popup__save-button')
 
 // константы открытия изображения
 const popupImage = document.querySelector('.popup_image');
@@ -29,10 +30,11 @@ const elementsContainer = document.querySelector('.elements');
 // общие функции popup
 function openPopup(popupClass) { // функция открытия
   popupClass.classList.add('popup__opened');
+  document.addEventListener('keydown', popupCloseEscape);
 }
 function closePopup(popupClass) { // функция закрытия
   popupClass.classList.remove('popup__opened');
-  formCard.reset(); // скорее неверное расположение вызова сброса формы, т.к сброс происходит только при нажатии на 'отправить'.
+  document.removeEventListener('keydown', popupCloseEscape);
 }
 
 function popupCloseEscape(evt) { // выход из popup с помощью Escape
@@ -80,7 +82,10 @@ function cardLike (evt) { // лайк карточки
 function cardDelete (evt) { // удаление карточки
   evt.target.parentElement.remove();
 }
-
+function submitButtonDisabled() { // функция неактивной кнопки submit
+  buttonElement.classList.add('popup__save-button_disabled'); 
+  buttonElement.disabled = true;
+}
 function imageOpenCard(name, link) { // открытие изображения
   openPopup(popupImage);
   popupImg.src = link;
@@ -103,27 +108,30 @@ initialCards.forEach(cardData => { //отображение карточек и�
 
 // Слушатели
 
-document.addEventListener('keydown', popupCloseEscape);
-document.addEventListener('mousedown', popupCloseOverlay); 
+profilePopup.addEventListener('mousedown', popupCloseOverlay); //слушатели клика по overlay
+cardPopup.addEventListener('mousedown', popupCloseOverlay); 
+popupImage.addEventListener('mousedown', popupCloseOverlay); 
 
-profileEdit.addEventListener('click', function() { // слушатели окна редактирования профиля
+profileEdit.addEventListener('click', () => { // слушатели окна редактирования профиля
   openPopup(profilePopup);
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileAdd.textContent;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileAdd.textContent;
 });
-profileClosePopup.addEventListener('click', function() {
-  closePopup(profilePopup)
+profileClosePopup.addEventListener('click', () => {
+  closePopup(profilePopup);
 });
 formProfile.addEventListener('submit', handleFormSubmitProfile);
 
-cardAdd.addEventListener('click', function() { // слушатели окна добавления карточки
+cardAdd.addEventListener('click', () => { // слушатели окна добавления карточки
+  submitButtonDisabled();
   openPopup(cardPopup);
 });
-cardClosePopup.addEventListener('click', function() {
+cardClosePopup.addEventListener('click', () => {
   closePopup(cardPopup);
 });
 formCard.addEventListener('submit', renderCard);
 
-imageClosePopup.addEventListener('click', function() { // слушатель закрытия окна изображения
-  closePopup(popupImage)
+imageClosePopup.addEventListener('click', () => { // слушатель закрытия окна изображения
+  closePopup(popupImage);
 });
+
