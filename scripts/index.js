@@ -1,110 +1,58 @@
-// константы для popup редактирования профиля
-const profilePopup = document.querySelector('.popup_profile');
-const profileClosePopup = profilePopup.querySelector('.popup__close-button');
-const profileEdit = document.querySelector('.profile__edit-button');
-const formProfile = document.querySelector('.popup__form_profile');
-const nameInput = document.querySelector('.popup__input_data_name');
-const jobInput = document.querySelector('.popup__input_data_add');
+import { FormValidator } from './validate.js'
 
-// константы для popup добавления карточки
-const cardTemplate = document.querySelector('#template-card').content;
-const cardPopup = document.querySelector('.popup_card');
-const cardClosePopup = cardPopup.querySelector('.popup__close-button');
-const cardAdd = document.querySelector('.profile__add-button');
-const formCard = document.querySelector('.popup__form_card');
-const cardInputName = document.querySelector('.popup__input_card_name');
-const cardInputLink = document.querySelector('.popup__input_card_link');
-const buttonElement = formCard.querySelector('.popup__save-button')
+import {initialCards,
+        selectors,
+        profilePopup,
+        profileClosePopup,
+        profileEdit,
+        formProfile,
+        nameInput,
+        jobInput,
+        cardPopup,
+        cardClosePopup,
+        cardAdd,
+        formCard,
+        cardInputName,
+        cardInputLink,
+        popupImage,
+        imageClosePopup,
+        profileName,
+        profileAdd,
+        elementsContainer} from './constants.js'
 
-// константы открытия изображения
-const popupImage = document.querySelector('.popup_image');
-const imageClosePopup = popupImage.querySelector('.popup__close-button');
-const popupImg = popupImage.querySelector('.popup__img');
-const popupImgName = popupImage.querySelector('.popup__name')
+import {openPopup,
+        closePopup,
+        popupCloseOverlay} from './utils.js'
 
-// константы для данных на главной странице
-const profileName = document.querySelector('.profile__name');
-const profileAdd = document.querySelector('.profile__add');
-const elementsContainer = document.querySelector('.elements');
+import { Card } from './card.js';
 
-// общие функции popup
-function openPopup(popupClass) { // функция открытия
-  popupClass.classList.add('popup__opened');
-  document.addEventListener('keydown', popupCloseEscape);
-}
-function closePopup(popupClass) { // функция закрытия
-  popupClass.classList.remove('popup__opened');
-  document.removeEventListener('keydown', popupCloseEscape);
-}
-
-function popupCloseEscape(evt) { // выход из popup с помощью Escape
-  if (evt.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup__opened')
-    closePopup(popupOpened);
-  }
-}
-function popupCloseOverlay(evt) { // выход из popup кликом на overlay
-  if (evt.target.classList.contains('popup__opened')) {
-    closePopup(evt.target);
-  }
-}
-
-// функция для формы редактирования профиля
-function handleFormSubmitProfile (evt) { // отправка формы
+function handleFormSubmitProfile (evt) { // функция для формы редактирования профиля
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAdd.textContent = jobInput.value;
   closePopup(profilePopup);
 };
 
-//функции popup добавления карточки 
-function createCard (cardData) { // функция создания карточек
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true); 
-
-  const cardImage = cardElement.querySelector('.element__img');
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-  cardImage.addEventListener('click', () => {
-    imageOpenCard(cardData.name, cardData.link);
-  });
-
-  cardElement.querySelector('.element__mesto').textContent = cardData.name;
-  cardElement.querySelector('.element__button-like').addEventListener('click', cardLike);
-  cardElement.querySelector('.element__button-remuve').addEventListener('click', cardDelete);
-
-  return cardElement
-}
-
-function cardLike (evt) { // лайк карточки
-  evt.target.classList.toggle('element__button-like_active');
-}
-
-function cardDelete (evt) { // удаление карточки
-  evt.target.parentElement.remove();
-}
-function submitButtonDisabled() { // функция неактивной кнопки submit
-  buttonElement.classList.add('popup__save-button_disabled'); 
-  buttonElement.disabled = true;
-}
-function imageOpenCard(name, link) { // открытие изображения
-  openPopup(popupImage);
-  popupImg.src = link;
-  popupImg.alt = name;
-  popupImgName.textContent = name;
-}
-
 function renderCard (evt) { // создание карточки при вводе данных
   evt.preventDefault();
-  const newPlaceName = cardInputName.value;
-  const newPlaceUrl = cardInputLink.value;
-  elementsContainer.prepend(createCard ({name: newPlaceName, link: newPlaceUrl}));
+  const newValues = {
+    name: cardInputName.value,
+    link: cardInputLink.value
+  }
+  handleAddCard(newValues)
   formCard.reset();
   closePopup(cardPopup);
 }
 
+function handleAddCard (cardData) {
+  const newCard = new Card(cardData, '#template-card')
+  newCard.generateCard(elementsContainer)
+}
+
 initialCards.forEach(cardData => { //отображение карточек из 'коробки'
-	elementsContainer.append(createCard(cardData));
+	handleAddCard(cardData);
 });
+
 
 // Слушатели
 
@@ -116,6 +64,7 @@ profileEdit.addEventListener('click', () => { // слушатели окна р�
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileAdd.textContent;
+  profileValidator.submitButtonDisabled()
 });
 profileClosePopup.addEventListener('click', () => {
   closePopup(profilePopup);
@@ -123,7 +72,7 @@ profileClosePopup.addEventListener('click', () => {
 formProfile.addEventListener('submit', handleFormSubmitProfile);
 
 cardAdd.addEventListener('click', () => { // слушатели окна добавления карточки
-  submitButtonDisabled();
+  cardValidator.submitButtonDisabled()
   openPopup(cardPopup);
 });
 cardClosePopup.addEventListener('click', () => {
@@ -135,3 +84,8 @@ imageClosePopup.addEventListener('click', () => { // слушатель закр
   closePopup(popupImage);
 });
 
+const profileValidator = new FormValidator(selectors, formProfile)
+profileValidator.enableValidation()
+
+const cardValidator = new FormValidator(selectors, formCard)
+cardValidator.enableValidation()
