@@ -17,16 +17,17 @@ export class Card {
     .cloneNode(true)
   }
 
-  _handleCardLike(evt) {
-    evt.target.classList
-    .toggle('element__button-like_active')
+  _handleCardLike() {
+    this._elementCard.querySelector('.element__button-like')
+    .classList 
+    .toggle('element__button-like_active') 
   }
 
-  _handleDelete(evt) {
-    evt.target.parentElement.remove();
+  _handleDelete() {
+    this._elementCard.remove()
   }
 
-  _imageOpenCard () {
+  _openCardImage () {
     popupImg.src = this._link
     popupImg.alt = this._name
     popupImgName.textContent = this._name
@@ -36,29 +37,29 @@ export class Card {
     this._elementCard
     .querySelector('.element__img')
     .addEventListener('click', (e) => {
-      this._imageOpenCard()
+      this._openCardImage()
     })
 
     this._elementCard
     .querySelector('.element__button-like')
     .addEventListener('click', (e) => {
-      this._handleCardLike(e)
+      this._handleCardLike()
     })
 
     this._elementCard
     .querySelector('.element__button-remuve')
     .addEventListener('click', (e) => {
-      this._handleDelete(e)
+      this._handleDelete()
     })
   }
 
-  generateCard(container) {
+  generateCard() {
     this._getTemplateCard()
     this._setEventListeners()
     this._cardImage = this._elementCard.querySelector('.element__img')
     this._cardImage.src = this._link
     this._cardImage.alt = this._name
     this._elementCard.querySelector('.element__mesto').textContent = this._name
-    container.prepend(this._elementCard)
+    return this._elementCard
   }
 }

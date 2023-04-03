@@ -1,4 +1,4 @@
-import { FormValidator } from './validate.js'
+import { FormValidator } from './FormValidator.js'
 
 import {initialCards,
         selectors,
@@ -24,7 +24,7 @@ import {openPopup,
         closePopup,
         popupCloseOverlay} from './utils.js'
 
-import { Card } from './card.js';
+import { Card } from './Card.js';
 
 function handleFormSubmitProfile (evt) { // функция для формы редактирования профиля
   evt.preventDefault();
@@ -46,7 +46,7 @@ function renderCard (evt) { // создание карточки при ввод
 
 function handleAddCard (cardData) {
   const newCard = new Card(cardData, '#template-card')
-  newCard.generateCard(elementsContainer)
+  elementsContainer.prepend(newCard.generateCard())
 }
 
 initialCards.forEach(cardData => { //отображение карточек из 'коробки'
@@ -64,7 +64,7 @@ profileEdit.addEventListener('click', () => { // слушатели окна р�
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileAdd.textContent;
-  profileValidator.submitButtonDisabled()
+  profileValidator.resetValidation()
 });
 profileClosePopup.addEventListener('click', () => {
   closePopup(profilePopup);
@@ -72,7 +72,7 @@ profileClosePopup.addEventListener('click', () => {
 formProfile.addEventListener('submit', handleFormSubmitProfile);
 
 cardAdd.addEventListener('click', () => { // слушатели окна добавления карточки
-  cardValidator.submitButtonDisabled()
+  cardValidator.resetValidation()
   openPopup(cardPopup);
 });
 cardClosePopup.addEventListener('click', () => {
