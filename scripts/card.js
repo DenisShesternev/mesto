@@ -15,12 +15,11 @@ export class Card {
     .content.
     querySelector('.element')
     .cloneNode(true)
+    this._buttonLike = this._elementCard.querySelector('.element__button-like')
   }
 
   _handleCardLike() {
-    this._elementCard.querySelector('.element__button-like')
-    .classList 
-    .toggle('element__button-like_active') 
+    this._buttonLike.classList.toggle("element__button-like_active") 
   }
 
   _handleDelete() {
@@ -40,8 +39,7 @@ export class Card {
       this._openCardImage()
     })
 
-    this._elementCard
-    .querySelector('.element__button-like')
+    this._buttonLike
     .addEventListener('click', (e) => {
       this._handleCardLike()
     })

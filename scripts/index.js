@@ -33,7 +33,7 @@ function handleFormSubmitProfile (evt) { // функция для формы р�
   closePopup(profilePopup);
 };
 
-function renderCard (evt) { // создание карточки при вводе данных
+function handleRenderCard (evt) { // создание карточки при вводе данных
   evt.preventDefault();
   const newValues = {
     name: cardInputName.value,
@@ -78,7 +78,7 @@ cardAdd.addEventListener('click', () => { // слушатели окна доб�
 cardClosePopup.addEventListener('click', () => {
   closePopup(cardPopup);
 });
-formCard.addEventListener('submit', renderCard);
+formCard.addEventListener('submit', handleRenderCard);
 
 imageClosePopup.addEventListener('click', () => { // слушатель закрытия окна изображения
   closePopup(popupImage);
