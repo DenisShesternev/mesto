@@ -1,11 +1,8 @@
-import {popupImage, popupImg, popupImgName} from './constants.js'
-
-import {openPopup} from './utils.js'
-
-export class Card {
-  constructor(data, templateSelector) {
+export default class Card {
+  constructor({data, handleCardClick}, templateSelector) {
     this._name = data.name
     this._link = data.link
+    this._handleCardClick = handleCardClick
     this._templateSelector = templateSelector
   }
 
@@ -36,7 +33,10 @@ export class Card {
     this._elementCard
     .querySelector('.element__img')
     .addEventListener('click', (e) => {
-      this._openCardImage()
+      this._handleCardClick({
+        name: this._name,
+        link: this._link
+      })
     })
 
     this._buttonLike

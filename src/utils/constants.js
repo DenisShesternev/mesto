@@ -35,50 +35,41 @@ const initialCards = [
   }
   
   // константы для popup редактирования профиля
-  const profilePopup = document.querySelector('.popup_profile');
-  const profileClosePopup = profilePopup.querySelector('.popup__close-button');
+  const profilePopup = ('.popup_profile');
   const profileEdit = document.querySelector('.profile__edit-button');
   const formProfile = document.querySelector('.popup__form_profile');
   const nameInput = document.querySelector('.popup__input_data_name');
   const jobInput = document.querySelector('.popup__input_data_add');
   
   // константы для popup добавления карточки
-  const cardPopup = document.querySelector('.popup_card');
-  const cardClosePopup = cardPopup.querySelector('.popup__close-button');
+  const cardTemplate = ('#template-card')
+  const cardPopup = ('.popup_card');
   const cardAdd = document.querySelector('.profile__add-button');
   const formCard = document.querySelector('.popup__form_card');
-  const cardInputName = document.querySelector('.popup__input_card_name');
-  const cardInputLink = document.querySelector('.popup__input_card_link');
-  
   // константы открытия изображения
-  const popupImage = document.querySelector('.popup_image');
-  const imageClosePopup = popupImage.querySelector('.popup__close-button');
-  const popupImg = popupImage.querySelector('.popup__img');
-  const popupImgName = popupImage.querySelector('.popup__name')
+  const popupImage = ('.popup_image');
+  const popupImg = ('.popup__img');
+  const popupImgName = ('.popup__name')
   
   // константы для данных на главной странице
-  const profileName = document.querySelector('.profile__name');
-  const profileAdd = document.querySelector('.profile__add');
-  const elementsContainer = document.querySelector('.elements');
+  const profileName = ('.profile__name');
+  const profileAdd = ('.profile__add');
+  const elementsContainer = ('.elements');
   
   export {initialCards,
             selectors,
             profilePopup,
-            profileClosePopup,
             profileEdit,
             formProfile,
             nameInput,
             jobInput,
             cardPopup,
-            cardClosePopup,
             cardAdd,
             formCard,
-            cardInputName,
-            cardInputLink,
             popupImage,
-            imageClosePopup,
             popupImg,
             popupImgName,
             profileName,
             profileAdd,
-            elementsContainer}
+            elementsContainer,
+          cardTemplate}
