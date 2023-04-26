@@ -21,14 +21,9 @@ export default class Card {
 
   _handleDelete() {
     this._elementCard.remove()
+    this._elementCard = null
   }
 
-  _openCardImage () {
-    popupImg.src = this._link
-    popupImg.alt = this._name
-    popupImgName.textContent = this._name
-    openPopup(popupImage)
-  }
   _setEventListeners() {
     this._elementCard
     .querySelector('.element__img')

@@ -26,9 +26,11 @@ import UserInfo from '../components/UserInfo.js'
 // работа с редактирование профиля
 const userInfo = new UserInfo({name: profileName, info: profileAdd})
 
-const popupProfile = new PopupWithForm (profilePopup, () => { 
+const addProfileInfo = () => {
   userInfo.setUserInfo(nameInput, jobInput)
-})
+}
+
+const popupProfile = new PopupWithForm (profilePopup, addProfileInfo)
 
 popupProfile.setEventListeners()
 
@@ -63,12 +65,12 @@ const cardList = new Section ({
   }}, elementsContainer)
   cardList.render()
 
-const popupCard = data => {
+const addPopupCard = data => {
   const card = createCard(data)
   cardList.addItem(card)
 }
 
-const newPopupCard = new PopupWithForm(cardPopup, popupCard)
+const newPopupCard = new PopupWithForm(cardPopup, addPopupCard)
 newPopupCard.setEventListeners()
 cardAdd.addEventListener('click', () => {
   cardValidator.resetValidation()

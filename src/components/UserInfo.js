@@ -12,8 +12,8 @@ export default class UserInfo {
         return this._userData
     }
 
-    setUserInfo(profileNameInput, profileAddInput) {
-        this._profileName.textContent = profileNameInput.value
-        this._profileAdd.textContent = profileAddInput.value
+    setUserInfo(userName, userInfo) {
+        this._profileName.textContent = userName.value
+        this._profileAdd.textContent = userInfo.value
     }
 }

@@ -37,3 +37,5 @@
 @import url(../blocks/popup/__img/popup__img.css);
 @import url(../blocks/popup/__name/popup__name.css);
 @import url(../blocks/element/__button-remuve/element__button-remuve.css);
+@import url(../blocks/popup/_image/popup_image.css);
+@import url(../blocks/main/main.css);
