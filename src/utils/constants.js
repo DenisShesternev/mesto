@@ -52,8 +52,8 @@ const initialCards = [
   const popupImgName = ('.popup__name')
   
   // константы для данных на главной странице
-  const profileName = ('.profile__name');
-  const profileAdd = ('.profile__add');
+  const profileName = document.querySelector('.profile__name');
+  const profileAdd = document.querySelector('.profile__add');
   const elementsContainer = ('.elements');
   
   export {initialCards,

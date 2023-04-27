@@ -32,12 +32,12 @@
             <form class="popup__form popup__form_profile" name="editProfileForm" novalidate>
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <fieldset class="popup__fieldset popup__fieldset_profile">
-                    <input class="popup__input popup__input_data_name" type="text" id="profile"
-                        placeholder="Ваше имя" minlength="2" maxlength="40" required>
-                    <span class="popup__input-error profile-error"></span>
-                    <input class="popup__input popup__input_data_add" type="text" id="add"
-                        placeholder="Ваш род занятий" minlength="2" maxlength="200" required>
-                    <span class="popup__input-error add-error"></span>
+                    <input class="popup__input popup__input_data_name" type="text" id="profileName"
+                        placeholder="Ваше имя" minlength="2" maxlength="40" name="profile" required>
+                    <span class="popup__input-error profileName-error"></span>
+                    <input class="popup__input popup__input_data_add" type="text" id="profileInfo"
+                        placeholder="Ваш род занятий" minlength="2" maxlength="200" name='info' required>
+                    <span class="popup__input-error profileInfo-error"></span>
                 </fieldset>
                 <button type="submit" class="popup__save-button popup__save-button_profile">Сохранить</button>
             </form>  

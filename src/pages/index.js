@@ -24,10 +24,12 @@ import Section from '../components/Section.js'
 import UserInfo from '../components/UserInfo.js'
 
 // работа с редактирование профиля
-const userInfo = new UserInfo({name: profileName, info: profileAdd})
+const userInfo = new UserInfo({
+  profileName: profileName, 
+  profileAdd: profileAdd})
 
-const addProfileInfo = () => {
-  userInfo.setUserInfo(nameInput, jobInput)
+const addProfileInfo = data => {
+  userInfo.setUserInfo(data)
 }
 
 const popupProfile = new PopupWithForm (profilePopup, addProfileInfo)
@@ -35,11 +37,10 @@ const popupProfile = new PopupWithForm (profilePopup, addProfileInfo)
 popupProfile.setEventListeners()
 
 profileEdit.addEventListener('click', () => {
-  const userData = userInfo.getUserInfo()
   profileValidator.resetValidation()
-  nameInput.value = userData.name
-  jobInput.value = userData.info
   popupProfile.open()
+  nameInput.value = profileName.textContent
+  jobInput.value = profileAdd.textContent
 })
 
 // работа с карточками

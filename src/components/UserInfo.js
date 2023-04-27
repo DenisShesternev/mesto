@@ -1,19 +1,19 @@
 export default class UserInfo {
-    constructor(userSelectors) {
-        this._profileName = document.querySelector(userSelectors.name)
-        this._profileAdd = document.querySelector(userSelectors.info)
+    constructor({profileName, profileAdd}) {
+        this._profileName = profileName
+        this._profileAdd = profileAdd
     }
 
     getUserInfo() {
-        this._userData = {
-            name: this._profileName.textContent,
+        const userData = {
+            profile: this._profileName.textContent,
             info: this._profileAdd.textContent
         }
-        return this._userData
+        return userData
     }
 
-    setUserInfo(userName, userInfo) {
-        this._profileName.textContent = userName.value
-        this._profileAdd.textContent = userInfo.value
+    setUserInfo(userData) {
+        this._profileName.textContent = userData.profile
+        this._profileAdd.textContent = userData.info
     }
 }
