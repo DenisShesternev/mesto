@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({data, handleCardClick, handleLikeClick, handleConfirmDelete}, templateSelector, api, userId) {
+  constructor({data, handleCardClick, handleLikeClick, handleConfirmDelete}, templateSelector, userId) {
     this._name = data.name
     this._link = data.link
     this._likes = data.likes
@@ -7,7 +7,6 @@ export default class Card {
     this._handleLikeClick = handleLikeClick
     this._handleConfirmDelete = handleConfirmDelete
     this._templateSelector = templateSelector
-    this._api = api
     this._id = data._id
     this._ownerId = data.owner._id
     this._userId = userId
@@ -18,31 +17,25 @@ export default class Card {
     .querySelector(this._templateSelector)
     .content.
     querySelector('.element')
-    .cloneNode(true)
+    .cloneNode(true)    
     this._buttonLike = this._elementCard.querySelector('.element__button-like')
+    this._likeCount = this._elementCard.querySelector('.element__like_count')
   }
 
-  handleCardLike() {
-    const  buttonLike = this._elementCard.querySelector('.element__button-like')
-    const likeCount = this._elementCard.querySelector('.element__like_count')
-    if(!(buttonLike.classList.contains('element__button-like_active'))) {
-      this._api.like(this._id)
-      .then((data) => {
-        buttonLike.classList.add('element__button-like_active')
-        likeCount.textContent = data.likes.length
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+  isLiked() {
+    return this._isLiked
+  }
+
+  handleCardLike(data) {
+    this._isLiked = data.likes.filter((item) => {
+      return item._id === this._userId
+    }).length > 0
+    this._likeCount.textContent = data.likes.length
+    if(this._isLiked) {
+        this._buttonLike.classList.add('element__button-like_active')
     } else {
-      this._api.disLike(this._id)
-      .then((data) => {
-        buttonLike.classList.remove('element__button-like_active')
-        likeCount.textContent = data.likes.length
-      })
-      .catch((err) => {
-        console.log(err)
-    })
+        this._buttonLike.classList.remove('element__button-like_active')
+        
   }}
 
   handleDelete() {

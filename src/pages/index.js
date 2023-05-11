@@ -106,8 +106,12 @@ const createCard = data => {
       popupFigure.open(data)
     },
     handleLikeClick: () => {
-      card.handleCardLike()
-    }, 
+      const promise = card.isLiked() ? api.disLike(data._id) : api.like(data._id)
+      promise
+      .then((data) => 
+      card.handleCardLike(data))
+      .catch((err) => console.log(err))
+    },
     handleConfirmDelete: () => {
       confirmDeletePopup.setSubmitAction(() => {
         confirmDeletePopup.renderLoadingWhileDelete(true)
@@ -121,7 +125,7 @@ const createCard = data => {
       })
       confirmDeletePopup.open()
     }
-  }, cardTemplate, api, userId)
+  }, cardTemplate, userId)
   const cardElement = card.generateCard()
   return cardElement
 }
